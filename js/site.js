@@ -16,6 +16,13 @@ function drawTrailRibbon(ctx, pts, maxW, r, g, b, alpha) {
     R.push({ x: pts[i].x + dy * w, y: pts[i].y - dx * w });
   }
   if (len < 1.5) return;
+  // safety: never draw a shape that is not finite or far larger than a trail can be
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (const p of pts) {
+    if (!Number.isFinite(p.x) || !Number.isFinite(p.y)) return;
+    if (p.x < minX) minX = p.x; if (p.x > maxX) maxX = p.x; if (p.y < minY) minY = p.y; if (p.y > maxY) maxY = p.y;
+  }
+  if (maxX - minX > 1600 || maxY - minY > 1600) return;
   const head = pts[0], tip = pts[n - 1];
   const grad = ctx.createLinearGradient(head.x, head.y, tip.x, tip.y);
   grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${(alpha * 0.92).toFixed(3)})`);
@@ -1320,7 +1327,7 @@ window.RaastaBaseMap = (() => {
   const mix = (a, b, t) => Math.round(a + (b - a) * t);
 
   const frame = now => {
-    const dt = Math.min(48, now - last) / 16.667;   // 1 = one 60fps frame
+    const dt = Math.max(0, Math.min(48, now - last)) / 16.667;   // 1 = one 60fps frame
     last = now;
     const k = (base) => 1 - Math.pow(1 - base, dt);  // frame-rate independent easing
 
@@ -1330,6 +1337,9 @@ window.RaastaBaseMap = (() => {
       const p = pts[i], q = pts[i - 1];
       p.x += (q.x - p.x) * k(0.5); p.y += (q.y - p.y) * k(0.5);
     }
+    // self-heal: if anything ever throws the trail far off, snap it back to the pointer
+    if (!Number.isFinite(hx) || !Number.isFinite(hy) || Math.abs(hx - mx) > 4000 || Math.abs(hy - my) > 4000) { hx = mx; hy = my; }
+    if (pts.some(p => !Number.isFinite(p.x) || !Number.isFinite(p.y) || Math.abs(p.x - hx) > 1600 || Math.abs(p.y - hy) > 1600)) pts.forEach(p => { p.x = hx; p.y = hy; });
     lensS += (lensT - lensS) * k(0.16);
     headR += (headRT - headR) * k(0.25);
     ringA += (ringAT - ringA) * k(0.2);
@@ -1600,7 +1610,7 @@ window.RaastaBaseMap = (() => {
   };
 
   const frame = now => {
-    const dt = Math.min(48, now - last) / 16.667; last = now;
+    const dt = Math.max(0, Math.min(48, now - last)) / 16.667; last = now;
     const k = b => 1 - Math.pow(1 - b, dt);
     let moving = false;
     stageState.forEach(ss => {
@@ -1712,11 +1722,14 @@ window.RaastaBaseMap = (() => {
 
   const mix = (a, b, t) => Math.round(a + (b - a) * t);
   const frame = now => {
-    const dt = Math.min(48, now - last) / 16.667; last = now;
+    const dt = Math.max(0, Math.min(48, now - last)) / 16.667; last = now;
     const k = base => 1 - Math.pow(1 - base, dt);
     hx += (mx - hx) * k(0.42); hy += (my - hy) * k(0.42);
     pts[0].x = hx; pts[0].y = hy;
     for (let i = 1; i < N; i++) { const p = pts[i], q = pts[i - 1]; p.x += (q.x - p.x) * k(0.5); p.y += (q.y - p.y) * k(0.5); }
+    // self-heal: if anything ever throws the trail far off, snap it back to the pointer
+    if (!Number.isFinite(hx) || !Number.isFinite(hy) || Math.abs(hx - mx) > 4000 || Math.abs(hy - my) > 4000) { hx = mx; hy = my; }
+    if (pts.some(p => !Number.isFinite(p.x) || !Number.isFinite(p.y) || Math.abs(p.x - hx) > 1600 || Math.abs(p.y - hy) > 1600)) pts.forEach(p => { p.x = hx; p.y = hy; });
     headR += (headRT - headR) * k(0.25);
     ringA += (ringAT - ringA) * k(0.2);
     tailA += (tailAT - tailA) * k(0.18);
@@ -2119,7 +2132,7 @@ window.RaastaBaseMap = (() => {
     });
   };
   const loop = now => {
-    const dt = Math.min(48, now - last) / 16.667; last = now;
+    const dt = Math.max(0, Math.min(48, now - last)) / 16.667; last = now;
     const k = 1 - Math.pow(1 - EASE, dt);
     tx += (mx - tx) * k; ty += (my - ty) * k;
     on += ((active ? 1 : 0) - on) * k;
@@ -2184,7 +2197,7 @@ window.RaastaBaseMap = (() => {
   holder.appendChild(spot);
   let mx = 0, my = 0, x = 0, y = 0, on = 0, onT = 0, raf = null, last = 0, rect = bar.getBoundingClientRect();
   const frame = now => {
-    const dt = Math.min(48, now - last) / 16.667; last = now;
+    const dt = Math.max(0, Math.min(48, now - last)) / 16.667; last = now;
     const k = b => 1 - Math.pow(1 - b, dt);
     x += (mx - x) * k(0.18); y += (my - y) * k(0.18); on += (onT - on) * k(0.12);
     spot.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
@@ -2314,7 +2327,7 @@ window.RaastaBaseMap = (() => {
   let py = 0, ph = 40, vy = 0, vh = 0, ty = 0, th = 40, raf = null, last = 0, activeIdx = 0, hoverIdx = -1;
   const target = i => { const a = as[i]; if (!a) return; ty = a.offsetTop; th = a.offsetHeight; kick(); };
   const step = now => {
-    const dt = Math.min(32, now - last) / 1000; last = now;
+    const dt = Math.max(0, Math.min(32, now - last)) / 1000; last = now;
     const K = 260, D = 26;                          // stiffness, damping
     const ay = K * (ty - py) - D * vy, ah = K * (th - ph) - D * vh;
     vy += ay * dt; vh += ah * dt; py += vy * dt; ph += vh * dt;
@@ -2398,7 +2411,7 @@ window.RaastaBaseMap = (() => {
     return false;
   };
   const frame = now => {
-    const dt = Math.min(48, now - last) / 16.667; last = now;
+    const dt = Math.max(0, Math.min(48, now - last)) / 16.667; last = now;
     current += (target - current) * (1 - Math.pow(1 - 0.12, dt));
     if (Math.abs(target - current) < 0.5) { current = target; driving = false; }
     window.scrollTo({ top: current, behavior: 'instant' });
