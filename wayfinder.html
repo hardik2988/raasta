@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find a route | Raasta</title>
+  <meta name="description" content="Pick where you are and where you are going on the UPES Bidholi campus and get a walking route with step-by-step directions.">
+  <meta name="theme-color" content="#fdf0d5">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raasta">
+  <meta property="og:title" content="Find a route | Raasta">
+  <meta property="og:description" content="Pick where you are and where you are going on the UPES Bidholi campus and get a walking route with step-by-step directions.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Find a route | Raasta">
+  <meta name="twitter:description" content="Pick where you are and where you are going on the UPES Bidholi campus and get a walking route with step-by-step directions.">
+  <meta name="twitter:image" content="assets/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <!-- Prepare pages in the background when a link is hovered, so moving between pages is near-instant -->
+  <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*.html"},"eagerness":"moderate"}]}</script>
+</head>
+<body>
+  <!-- Recolours the campus image into the site palette: buildings tan,
+       water and paths steel blue, grass green, background transparent -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="map-tone" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+      <feColorMatrix in="SourceGraphic" type="matrix" result="bld" values="0 0 0 0 0.84  0 0 0 0 0.74  0 0 0 0 0.58  12 -6 -6 0 1"/>
+      <feColorMatrix in="SourceGraphic" type="matrix" result="water" values="0 0 0 0 0.56  0 0 0 0 0.71  0 0 0 0 0.80  -3 -4 7 0 -0.25"/>
+      <feColorMatrix in="SourceGraphic" type="matrix" result="field" values="0 0 0 0 0.70  0 0 0 0 0.80  0 0 0 0 0.62  -8 8 0 0 -1.3"/>
+      <feMerge><feMergeNode in="field"/><feMergeNode in="water"/><feMergeNode in="bld"/></feMerge>
+    </filter>
+  </svg>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Raasta home">
+        <svg viewBox="0 0 32 32" aria-hidden="true" width="32" height="32"><path d="M16 4a12 12 0 1 0 12 12" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="16" cy="16" r="3.4" fill="#c1121f"/></svg>
+        Raasta
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Open navigation menu">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="places.html">Places</a>
+        <a href="wayfinder.html" aria-current="page">Find a route</a>
+        <a href="gestalt.html">Gestalt principles</a>
+        <a href="process.html">Design process</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <div class="page-head">
+        <span class="eyebrow">Main flow</span>
+        <h1 style="font-size:clamp(1.9rem,4vw,2.8rem)">Find a route</h1>
+        <p class="lead">Choose where you are and where you are going. Search with autocomplete, use the lists, or tap places on the map.</p>
+        <ol class="stepper" id="stepper" aria-label="Progress">
+          <li class="is-current" data-step="1"><span class="dot">1</span><span class="t">Where are you?</span></li>
+          <li class="bar" role="presentation" aria-hidden="true"></li>
+          <li data-step="2"><span class="dot">2</span><span class="t">Where to?</span></li>
+          <li class="bar" role="presentation" aria-hidden="true"></li>
+          <li data-step="3"><span class="dot">3</span><span class="t">Walk</span></li>
+        </ol>
+      </div>
+
+      <div class="finder-v2">
+        <!-- Directions bar: start, swap, destination -->
+        <section class="card planner planner-bar" aria-labelledby="planner-title">
+          <span class="pb-light" aria-hidden="true"></span>
+          <div class="pb-head">
+            <h2 id="planner-title">Plan your walk</h2>
+            <p class="hint pb-hint">Or tap the map: your <strong>1st tap</strong> sets the start (A), your <strong>2nd tap</strong> sets the destination (B).</p>
+          </div>
+          <div id="notice-container" aria-live="polite"></div>
+          <div class="pb-row">
+            <div class="field">
+              <label id="from-label" for="from-input"><span class="ab" aria-hidden="true">A</span> I am at</label>
+              <div class="combobox-wrap" id="from-combobox-wrap">
+                <div class="combobox-input-wrap" id="from-input-wrap">
+                  <input type="text"
+                         id="from-input"
+                         class="combobox-input"
+                         role="combobox"
+                         aria-expanded="false"
+                         aria-autocomplete="list"
+                         aria-controls="from-listbox"
+                         aria-labelledby="from-label"
+                         placeholder="Search or pick starting point..."
+                         autocomplete="off"
+                         spellcheck="false">
+                  <button type="button" class="combobox-clear" id="from-clear-btn" aria-label="Clear start place" tabindex="-1" hidden>×</button>
+                  <button type="button" class="combobox-toggle" id="from-toggle-btn" aria-label="Toggle start place dropdown" tabindex="-1">
+                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </button>
+                </div>
+                <ul id="from-listbox" class="combobox-listbox" role="listbox" aria-label="Starting places" hidden></ul>
+                <!-- Fallback select kept in DOM for no-JS or accessibility fallback -->
+                <select id="from" class="sr-only" tabindex="-1" aria-hidden="true"></select>
+              </div>
+            </div>
+            <button class="pb-swap" id="swap" type="button" aria-label="Swap A and B" title="Swap A and B"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg></button>
+            <div class="field">
+              <label id="to-label" for="to-input"><span class="ab b" aria-hidden="true">B</span> I want to go to</label>
+              <div class="combobox-wrap" id="to-combobox-wrap">
+                <div class="combobox-input-wrap" id="to-input-wrap">
+                  <input type="text"
+                         id="to-input"
+                         class="combobox-input"
+                         role="combobox"
+                         aria-expanded="false"
+                         aria-autocomplete="list"
+                         aria-controls="to-listbox"
+                         aria-labelledby="to-label"
+                         placeholder="Search or pick destination..."
+                         autocomplete="off"
+                         spellcheck="false">
+                  <button type="button" class="combobox-clear" id="to-clear-btn" aria-label="Clear destination" tabindex="-1" hidden>×</button>
+                  <button type="button" class="combobox-toggle" id="to-toggle-btn" aria-label="Toggle destination dropdown" tabindex="-1">
+                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </button>
+                </div>
+                <ul id="to-listbox" class="combobox-listbox" role="listbox" aria-label="Destinations" hidden></ul>
+                <!-- Fallback select kept in DOM -->
+                <select id="to" class="sr-only" tabindex="-1" aria-hidden="true"></select>
+              </div>
+            </div>
+            <button class="btn btn-ghost btn-small pb-clear" id="clear" type="button">Clear</button>
+            <button class="pb-pop-btn" id="pb-pop-btn" type="button" aria-expanded="false" aria-controls="pb-pop"><span>Popular routes</span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          </div>
+          <div class="pb-foot popular-planner-wrap" id="pb-pop" aria-labelledby="pop-routes-label">
+            <span class="eyebrow" id="pop-routes-label">Popular routes</span>
+            <div class="popular-chips" id="planner-popular-chips"></div>
+          </div>
+        </section>
+
+        <section class="card map-card" aria-label="Campus map card">
+          <!-- Map Pan and Zoom Controls Toolbar -->
+          <!-- Map layer toggle, on the map -->
+          <label class="toggle map-zones-toggle"><input type="checkbox" id="zones" checked> <span>Show campus zones</span></label>
+
+          <div class="map-controls" role="toolbar" aria-label="Map zoom and pan controls">
+            <button type="button" class="map-ctrl-btn" id="zoom-in" aria-label="Zoom in on map" title="Zoom in (+)">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button type="button" class="map-ctrl-btn" id="zoom-out" aria-label="Zoom out on map" title="Zoom out (-)">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button type="button" class="map-ctrl-btn" id="zoom-reset" aria-label="Reset map view" title="Reset view (0)">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+            </button>
+            <span class="map-ctrl-sep" aria-hidden="true"></span>
+            <button type="button" class="map-ctrl-btn" id="toggle-labels" aria-pressed="false" aria-label="Show all place names" title="Show all names (N)">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V5h11v2"/><path d="M9.5 5v14"/><path d="M7.5 19h4"/><path d="M14 13v-1.5h6V13"/><path d="M17 11.5V19"/><path d="M15.6 19h2.8"/></svg>
+            </button>
+            <button type="button" class="map-ctrl-btn" id="map-expand" aria-pressed="false" aria-label="Show map full screen" title="Full screen (F)">
+              <svg class="ico-expand" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+              <svg class="ico-collapse" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            </button>
+            <span class="map-zoom-badge" id="zoom-badge" aria-live="polite" aria-atomic="true">100%</span>
+          </div>
+
+          <div class="map-wrap show-zones"
+               id="map"
+               tabindex="0"
+               role="region"
+               aria-label="Interactive campus map. Use arrow keys to pan, plus and minus keys to zoom, zero to reset">
+            <div class="map-stage" id="map-stage">
+              <img src="assets/campus-map.webp" alt="Simplified campus map showing roads, buildings and the cricket ground" width="2090" height="1512">
+              <div class="map-veil"></div>
+              <svg class="map-svg" id="map-svg" viewBox="0 0 1045 756" aria-hidden="true">
+                <g id="road-layer"></g>
+                <g id="zone-layer"></g>
+                <path class="route-halo" id="route-halo" d=""/>
+                <path class="route-line" id="route-line" d="" pathLength="1"/>
+                <path class="route-flow" id="route-flow" d=""/>
+                <g id="turn-layer"></g>
+                <g id="map-furniture"></g>
+              </svg>
+              <div class="markers" id="markers"></div>
+            </div>
+          </div>
+          <p class="map-note">Simplified map, not to scale. Drag or use mouse wheel to pan and zoom. Walking times assume about 80 metres per minute.</p>
+        </section>
+
+        <!-- Below the map: the route, quick finds and map options -->
+        <div class="finder-below">
+          <section class="card fb-result" aria-label="Your route">
+            <span class="eyebrow">Your route</span>
+            <div class="result" id="result" aria-live="polite">
+              <p class="empty-state">Choose a start and a destination to see your route.</p>
+            </div>
+          </section>
+          <div class="fb-side">
+            <section class="card fb-card">
+            <div class="nearest-section" id="nearest-section">
+              <div class="nearest-header">
+                <span class="eyebrow" style="margin-bottom: 4px;">Quick find from start</span>
+                <strong id="nearest-heading">Find nearest place by category:</strong>
+              </div>
+              <div class="nearest-chips" id="nearest-chips" role="group" aria-labelledby="nearest-heading"></div>
+              <div class="nearest-results" id="nearest-results" role="region" aria-label="Nearest places list" hidden></div>
+            </div>
+            </section>
+            <section class="card fb-card fb-filters">
+            <div id="step-free-wrap" hidden>
+              <label class="toggle"><input type="checkbox" id="step-free"> Step-free routes only</label>
+            </div>
+            <fieldset>
+              <legend>Highlight a type of place</legend>
+              <div class="chips" id="filters"></div>
+              <p class="hint" id="filter-status" aria-live="polite"></p>
+            </fieldset>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Place Detail Panel (Native Dialog / Bottom Sheet on Mobile) -->
+    <dialog id="place-dialog" class="place-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-content" id="dialog-content">
+        <div class="dialog-handle" aria-hidden="true"></div>
+        <button type="button" class="dialog-close-btn" id="dialog-close" aria-label="Close place details">×</button>
+        <div id="dialog-body"></div>
+      </div>
+    </dialog>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p><strong>Raasta</strong> · "Designing for Perception"</p>
+        <p>A Gestalt principles web assignment. Not an official UPES product.</p>
+      </div>
+      <div>
+        <p><a href="gestalt.html">Gestalt principles</a> · <a href="process.html">Design process</a></p>
+      </div>
+    </div>
+    <div class="wrap footer-credits" aria-label="Project credits">
+      <div class="credit-item">
+        <span class="micro">Designed &amp; built by</span>
+        <strong>Hardik Kumar</strong>
+        <span>SAP ID: 590037988</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Under the guidance of</span>
+        <strong>Prof. Pankaj Badoni</strong>
+        <span>UPES, Dehradun</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Contact</span>
+        <a href="mailto:Hardik.37988@stu.upes.ac.in">Hardik.37988@stu.upes.ac.in</a>
+        <a href="https://github.com/hardik2988" target="_blank" rel="noopener">github.com/hardik2988</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/place-editor.js"></script>
+  <script src="js/route-core.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/wayfinder.js"></script>
+</body>
+</html>

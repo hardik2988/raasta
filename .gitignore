@@ -1,0 +1,8 @@
+# Generated test output (Lighthouse reports, screenshots)
+tests/*.json
+tests/screenshots/
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+node_modules/

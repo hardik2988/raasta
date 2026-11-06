@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Places Directory | Raasta</title>
+  <meta name="description" content="Explore every academic block, hostels, food courts, sports facilities and administration centres on the UPES Bidholi campus.">
+  <meta name="theme-color" content="#fdf0d5">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raasta">
+  <meta property="og:title" content="Campus Places Directory | Raasta">
+  <meta property="og:description" content="Explore every academic block, hostels, food courts, sports facilities and administration centres on the UPES Bidholi campus.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Campus Places Directory | Raasta">
+  <meta name="twitter:description" content="Explore every academic block, hostels, food courts, sports facilities and administration centres on the UPES Bidholi campus.">
+  <meta name="twitter:image" content="assets/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <!-- Prepare pages in the background when a link is hovered, so moving between pages is near-instant -->
+  <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*.html"},"eagerness":"moderate"}]}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Raasta home">
+        <svg viewBox="0 0 32 32" aria-hidden="true" width="32" height="32"><path d="M16 4a12 12 0 1 0 12 12" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="16" cy="16" r="3.4" fill="#c1121f"/></svg>
+        Raasta
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Open navigation menu">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="places.html" aria-current="page">Places</a>
+        <a href="wayfinder.html">Find a route</a>
+        <a href="gestalt.html">Gestalt principles</a>
+        <a href="process.html">Design process</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <div class="page-head">
+        <span class="eyebrow">Campus directory</span>
+        <h1 style="font-size:clamp(1.9rem,4vw,2.8rem)">All <span data-place-count>21</span> Campus Places</h1>
+        <p class="lead">Search and filter every building on the UPES Bidholi campus. Find where you need to go, check building categories, and launch a walking route from either end.</p>
+      </div>
+
+      <section class="card" aria-label="Places directory toolbar" style="margin-bottom: var(--space-5);">
+        <div class="dir-toolbar">
+          <div class="dir-search-wrap">
+            <svg class="dir-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="search"
+                   id="dir-search"
+                   class="dir-search-input"
+                   placeholder="Search by name, category or alias (e.g. canteen, mdc, gym, boys)..."
+                   aria-label="Search campus places by name or alias"
+                   autocomplete="off"
+                   spellcheck="false">
+          </div>
+
+          <fieldset>
+            <legend class="sr-only">Filter places by category</legend>
+            <div class="chips dir-filters" id="dir-filters" role="group" aria-label="Filter by place type"></div>
+          </fieldset>
+
+          <p class="dir-count" id="dir-count" aria-live="polite">Showing 21 of 21 places</p>
+        </div>
+      </section>
+
+      <!-- Responsive Places Grid (1 col phone, 2 col tablet, 3 col desktop) -->
+      <section aria-label="Campus places catalog">
+        <h2 class="sr-only">Campus places directory list</h2>
+        <div class="places-grid" id="places-grid" style="min-height: 600px;"></div>
+
+        <div id="dir-empty" class="empty-state" style="margin-top: 32px;" hidden>
+          <p style="margin: 0 0 8px; font-weight: 600; font-size: 1.1rem; color: var(--ink);">No campus places matched your search.</p>
+          <p style="margin: 0; font-size: 0.92rem;">Try searching for a different keyword, block number, acronym (like MDC or SOCS), or clear the category filter above.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p><strong>Raasta</strong> · "Designing for Perception"</p>
+        <p>A Gestalt principles web assignment. Not an official UPES product.</p>
+      </div>
+      <div>
+        <p><a href="gestalt.html">Gestalt principles</a> · <a href="process.html">Design process</a></p>
+      </div>
+    </div>
+    <div class="wrap footer-credits" aria-label="Project credits">
+      <div class="credit-item">
+        <span class="micro">Designed &amp; built by</span>
+        <strong>Hardik Kumar</strong>
+        <span>SAP ID: 590037988</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Under the guidance of</span>
+        <strong>Prof. Pankaj Badoni</strong>
+        <span>UPES, Dehradun</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Contact</span>
+        <a href="mailto:Hardik.37988@stu.upes.ac.in">Hardik.37988@stu.upes.ac.in</a>
+        <a href="https://github.com/hardik2988" target="_blank" rel="noopener">github.com/hardik2988</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+  <script>
+    /*
+      Places Directory interaction:
+      - Real-time search filter matching place names, categories, and aliases
+      - Category filter chips matching Gestalt Similarity & Proximity
+      - Live screen-reader announcement of result counts
+      - Direct links to wayfinder.html prefilling ?from=ID or ?to=ID
+    */
+    (() => {
+      const C = CAMPUS;
+      const searchInput = document.getElementById('dir-search');
+      const filtersEl = document.getElementById('dir-filters');
+      const gridEl = document.getElementById('places-grid');
+      const countEl = document.getElementById('dir-count');
+      const emptyEl = document.getElementById('dir-empty');
+
+      let currentCat = 'all';
+      let currentQuery = '';
+
+      // Populate category filter chips
+      filtersEl.innerHTML =
+        '<button type="button" class="chip" data-cat="all" aria-pressed="true">All places</button>' +
+        Object.entries(C.categories).map(([k, c]) =>
+          `<button type="button" class="chip" data-cat="${k}" aria-pressed="false">${Site.pinHTML(k)}${c.label}</button>`
+        ).join('');
+
+      // Filter and render cards
+      function renderDirectory() {
+        const q = currentQuery.trim().toLowerCase();
+
+        const filtered = C.places.filter(p => {
+          // Category match
+          if (currentCat !== 'all' && p.cat !== currentCat) {
+            return false;
+          }
+
+          // Search query match
+          if (!q) return true;
+
+          const nameMatch = p.name.toLowerCase().includes(q);
+          const catMatch = C.categories[p.cat].label.toLowerCase().includes(q);
+          const aliasMatch = Array.isArray(p.aliases) && p.aliases.some(a => a.toLowerCase().includes(q));
+
+          return nameMatch || catMatch || aliasMatch;
+        });
+
+        const total = C.places.length;
+        const count = filtered.length;
+        countEl.textContent = `Showing ${count} of ${total} places`;
+
+        if (count === 0) {
+          gridEl.innerHTML = '';
+          emptyEl.hidden = false;
+          return;
+        }
+
+        emptyEl.hidden = true;
+        gridEl.innerHTML = filtered.map(p => {
+          const cat = C.categories[p.cat];
+          const aliasesText = Array.isArray(p.aliases) && p.aliases.length > 0 ? p.aliases.join(', ') : '';
+
+          return `
+            <article class="card place-card" data-cat="${p.cat}" data-id="${p.id}">
+              <div class="place-card-top">
+                ${Site.pinHTML(p.cat)}
+                <div class="place-card-info">
+                  <h3>${p.name}</h3>
+                  <span class="place-cat-badge">${cat.label}</span>
+                  ${aliasesText ? `<span class="place-aliases">Also known as: ${aliasesText}</span>` : ''}
+                </div>
+              </div>
+              <div class="place-card-actions">
+                <a href="wayfinder.html?from=${encodeURIComponent(p.id)}" class="btn btn-secondary btn-small" aria-label="Start here (A) at ${p.name}">Start here (A)</a>
+                <a href="wayfinder.html?to=${encodeURIComponent(p.id)}" class="btn btn-primary btn-small" aria-label="Go here (B) to ${p.name}">Go here (B)</a>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      // Filter chip clicks
+      filtersEl.addEventListener('click', e => {
+        const chip = e.target.closest('.chip');
+        if (!chip) return;
+        currentCat = chip.dataset.cat;
+        filtersEl.querySelectorAll('.chip').forEach(c => {
+          c.setAttribute('aria-pressed', String(c.dataset.cat === currentCat));
+        });
+        renderDirectory();
+      });
+
+      // Search input handler
+      searchInput.addEventListener('input', e => {
+        currentQuery = e.target.value;
+        renderDirectory();
+      });
+
+      // Initial render
+      renderDirectory();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Raasta | Campus wayfinding for UPES Bidholi</title>
+  <meta name="description" content="Raasta is a schematic walking map for the UPES Bidholi campus. Pick where you are, pick where you are going, and follow one clear route.">
+  <meta name="theme-color" content="#f1ddb6">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raasta">
+  <meta property="og:title" content="Raasta | Campus wayfinding for UPES Bidholi">
+  <meta property="og:description" content="Raasta is a schematic walking map for the UPES Bidholi campus. Pick where you are, pick where you are going, and follow one clear route.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Raasta | Campus wayfinding for UPES Bidholi">
+  <meta name="twitter:description" content="Raasta is a schematic walking map for the UPES Bidholi campus. Pick where you are, pick where you are going, and follow one clear route.">
+  <meta name="twitter:image" content="assets/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <!-- Prepare pages in the background when a link is hovered, so moving between pages is near-instant -->
+  <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*.html"},"eagerness":"moderate"}]}</script>
+</head>
+<body class="page-home">
+  <!-- Recolours the campus image into the site palette: buildings tan,
+       water and paths steel blue, grass green, background transparent -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="map-tone" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+      <feColorMatrix in="SourceGraphic" type="matrix" result="bld" values="0 0 0 0 0.84  0 0 0 0 0.74  0 0 0 0 0.58  12 -6 -6 0 1"/>
+      <feColorMatrix in="SourceGraphic" type="matrix" result="water" values="0 0 0 0 0.56  0 0 0 0 0.71  0 0 0 0 0.80  -3 -4 7 0 -0.25"/>
+      <feColorMatrix in="SourceGraphic" type="matrix" result="field" values="0 0 0 0 0.70  0 0 0 0 0.80  0 0 0 0 0.62  -8 8 0 0 -1.3"/>
+      <feMerge><feMergeNode in="field"/><feMergeNode in="water"/><feMergeNode in="bld"/></feMerge>
+    </filter>
+  </svg>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header on-dark">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Raasta home">
+        <!-- Logo: a ring with a gap (closure) around a single destination dot -->
+        <svg viewBox="0 0 32 32" aria-hidden="true" width="32" height="32"><path d="M16 4a12 12 0 1 0 12 12" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="16" cy="16" r="3.4" fill="#c1121f"/></svg>
+        Raasta
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Open navigation menu">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="places.html">Places</a>
+        <a href="wayfinder.html">Find a route</a>
+        <a href="gestalt.html">Gestalt principles</a>
+        <a href="process.html">Design process</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero hero-full hero-pro" aria-labelledby="hero-title">
+      <div class="hp-bg" aria-hidden="true">
+        <div class="hp-bgmap"><div class="hp-bgmap-img" id="hp-bgmap-img"></div></div>
+        <div class="hp-veil"></div>
+        <div class="hp-glow g1"></div>
+        <div class="hp-glow g2"></div>
+        <div class="hp-glow g3"></div>
+        <div class="hp-spot"></div>
+        <div class="hp-grid"></div>
+        <img class="hp-map-ghost" src="assets/campus-map.webp" alt="" width="2090" height="1512">
+      </div>
+
+      <div class="wrap hp-inner">
+        <div class="hp-copy">
+          <a class="hp-badge" href="places.html">
+            <span class="hp-dot" aria-hidden="true"></span>
+            <span>Live campus map · UPES Bidholi</span>
+            <span class="hp-badge-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <h1 id="hero-title">Find any block,<br><em>in two taps.</em></h1>
+          <p class="hp-lead">Raasta is the walking map for new students and visitors. Pick where you are, pick where you are going, and follow one clear route, step by step.</p>
+          <div class="hp-cta">
+            <a class="hp-btn primary" href="wayfinder.html">Find a route <span aria-hidden="true">&rarr;</span></a>
+            <a class="hp-btn ghost" href="places.html">Browse places</a>
+          </div>
+          <dl class="hp-proof">
+            <div><dd data-place-count>31</dd><dt>places mapped</dt></div>
+            <div><dd data-pair-count>930</dd><dt>routes ready</dt></div>
+            <div><dd>0</dd><dt>sign-ups needed</dt></div>
+          </dl>
+        </div>
+
+        <figure class="hp-device" aria-label="Interactive route preview">
+          <span class="hp-glare" aria-hidden="true"></span>
+          <div class="hp-device-bar">
+            <div class="hp-field"><span class="hp-ab a">A</span><span class="hp-field-txt" id="preview-from">Library</span></div>
+            <div class="hp-field"><span class="hp-ab b">B</span><span class="hp-field-txt" id="preview-to">Food Court</span></div>
+          </div>
+          <div class="hp-map" id="preview-map">
+            <svg class="hp-svg" id="hp-svg" viewBox="0 0 1045 756" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Interactive campus map. Tap a place to choose your start, then another to choose your destination."></svg>
+            <div class="hp-hint" id="hp-hint"><span class="hp-hint-dot" aria-hidden="true"></span><span id="hp-hint-txt">Tap any dot to plan your own route</span></div>
+            <div class="hp-tip" id="hp-tip" aria-hidden="true"></div>
+            <div class="hp-progress" aria-hidden="true"><span id="hp-progress-bar"></span></div>
+          </div>
+          <div class="hp-tabs" id="hp-tabs" role="tablist" aria-label="Popular routes"></div>
+          <figcaption class="hp-device-foot">
+            <div>
+              <strong id="preview-title">Library to Food Court</strong>
+              <span id="preview-meta">about 7 min · 530 m</span>
+            </div>
+            <a class="hp-go" id="hp-go" href="wayfinder.html?from=library&amp;to=foodcourt">Start</a>
+          </figcaption>
+          <div class="hp-toast" aria-hidden="true">
+            <span class="hp-toast-ico">&#8599;</span>
+            <span><small id="preview-step-n">Next</small><b id="preview-step">Head along Library Road</b></span>
+          </div>
+        </figure>
+      </div>
+
+      <a class="hp-scroll" href="#about" aria-label="Scroll to learn more"><span></span></a>
+    </section>
+
+    <!-- Statement -->
+    <section class="block statement" id="about" aria-labelledby="about-title">
+      <div class="wrap statement-grid">
+        <span class="micro">About</span>
+        <div>
+          <h2 id="about-title" class="statement-text">Raasta turns a block number into a walking route, so anyone new to campus can find their way without asking.</h2>
+          <hr class="rule">
+          <div class="statement-foot">
+            <p class="statement-sub">A simple walking map for new students and visitors. Pick where you are, pick where you need to be, and follow one clear route with step-by-step directions.</p>
+            <dl class="stats">
+              <div><dt>Places mapped</dt><dd data-place-count>31</dd></div>
+              <div><dt>Routes ready</dt><dd data-pair-count>930</dd></div>
+              <div><dt>Place types</dt><dd data-type-count>7</dd></div>
+              <div><dt>Taps needed</dt><dd>2</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick routes -->
+    <section class="block" aria-labelledby="popular-heading">
+      <div class="wrap">
+        <div class="section-head split-head">
+          <div>
+            <span class="micro">Quick routes</span>
+            <h2 id="popular-heading">Popular campus <em>walks.</em></h2>
+          </div>
+          <div class="split-side">
+            <p class="lead">The walks people ask about most, ready in one tap. Each card shows the real route, how long it takes and how far it is.</p>
+            <a class="link-arrow" href="wayfinder.html">Plan your own route</a>
+          </div>
+        </div>
+        <div class="route-cards" id="home-popular-chips"></div>
+      </div>
+    </section>
+
+    <!-- Who it is for -->
+    <section class="block" aria-labelledby="who">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="micro">Who it is for</span>
+          <h2 id="who">Built for people who are <em>new to the campus.</em></h2>
+        </div>
+        <div class="grid-3 persona-row">
+          <article class="persona">
+            <span class="micro">01 · Main audience</span>
+            <h3>First-year students</h3>
+            <p>Blocks are named by number, so a class in "Block 9" tells you nothing about where to walk. Raasta turns a number into a route.</p>
+          </article>
+          <article class="persona">
+            <span class="micro">02 · Occasional users</span>
+            <h3>Visitors and parents</h3>
+            <p>They arrive at the gate with no map in their head and need to find a hostel or the Management Development Centre quickly.</p>
+          </article>
+          <article class="persona">
+            <span class="micro">03 · Short-term users</span>
+            <h3>Event volunteers</h3>
+            <p>They guide other people. A clear route with distances lets them give directions without guessing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works (dark) -->
+    <section class="block dark" aria-labelledby="how">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="micro">How it works</span>
+          <h2 id="how">Three steps, <em>one path.</em></h2>
+        </div>
+        <ol class="step-flow">
+          <li><div class="n">01</div><h3>Pick where you are</h3><p class="muted">Choose your starting place from the list or tap it on the map.</p></li>
+          <li><div class="n">02</div><h3>Pick where you are going</h3><p class="muted">Choose a destination. The route appears straight away.</p></li>
+          <li><div class="n">03</div><h3>Follow the route</h3><p class="muted">Read the steps, tick them off as you walk and watch the ring close when you arrive.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Reading the map -->
+    <section class="block" aria-labelledby="legend">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="micro">Reading the map</span>
+          <h2 id="legend">Colour, shape and letter tell you <em>what a place is.</em></h2>
+        </div>
+        <p class="lead">Every place of the same type shares one colour, one shape and one category letter, so you can scan the map quickly without reading every label.</p>
+        <ul class="legend" id="legend-list"></ul>
+      </div>
+    </section>
+
+    <!-- Image over scrolling wordmark -->
+    <section class="marquee-band" aria-label="Find a route">
+      <div class="band-glow" aria-hidden="true"></div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-row row-1">
+          <div class="marquee-track">
+            <span>RAASTA / FIND YOUR WAY /&nbsp;</span><span>RAASTA / FIND YOUR WAY /&nbsp;</span>
+          </div>
+        </div>
+        <div class="marquee-row row-2">
+          <div class="marquee-track reverse outline">
+            <span>EVERY BLOCK · EVERY PATH ·&nbsp;</span><span>EVERY BLOCK · EVERY PATH ·&nbsp;</span>
+          </div>
+        </div>
+      </div>
+
+      <a class="marquee-card" href="wayfinder.html" aria-label="Open the route finder">
+        <svg class="band-map" id="band-map" viewBox="230 190 660 495" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+        <span class="band-route" id="band-route" aria-live="off"><span class="micro">Now showing</span><strong id="band-route-name">Library to Food Court</strong></span>
+        <span class="marquee-card-cta">Find a route</span>
+      </a>
+      <span class="micro marquee-hint">Two taps to get a route</span>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p><strong>Raasta</strong> · "Designing for Perception"</p>
+        <p>A Gestalt principles web assignment. Not an official UPES product.</p>
+      </div>
+      <div>
+        <p>The map is a simplified drawing. Distances are estimates.</p>
+        <p><a href="gestalt.html">Gestalt principles</a> · <a href="process.html">Design process</a></p>
+      </div>
+    </div>
+    <div class="wrap footer-credits" aria-label="Project credits">
+      <div class="credit-item">
+        <span class="micro">Designed &amp; built by</span>
+        <strong>Hardik Kumar</strong>
+        <span>SAP ID: 590037988</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Under the guidance of</span>
+        <strong>Prof. Pankaj Badoni</strong>
+        <span>UPES, Dehradun</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Contact</span>
+        <a href="mailto:Hardik.37988@stu.upes.ac.in">Hardik.37988@stu.upes.ac.in</a>
+        <a href="https://github.com/hardik2988" target="_blank" rel="noopener">github.com/hardik2988</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/route-core.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

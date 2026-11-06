@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestalt principles | Raasta</title>
+  <meta name="description" content="Eight Gestalt principles used in Raasta, each with where it appears, why it was chosen, how it helps usability, and a live demo you can switch on and off.">
+  <meta name="theme-color" content="#fdf0d5">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raasta">
+  <meta property="og:title" content="Gestalt principles | Raasta">
+  <meta property="og:description" content="Eight Gestalt principles used in Raasta, each with where it appears, why it was chosen, how it helps usability, and a live demo you can switch on and off.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gestalt principles | Raasta">
+  <meta name="twitter:description" content="Eight Gestalt principles used in Raasta, each with where it appears, why it was chosen, how it helps usability, and a live demo you can switch on and off.">
+  <meta name="twitter:image" content="assets/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <!-- Prepare pages in the background when a link is hovered, so moving between pages is near-instant -->
+  <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*.html"},"eagerness":"moderate"}]}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Raasta home">
+        <svg viewBox="0 0 32 32" aria-hidden="true" width="32" height="32"><path d="M16 4a12 12 0 1 0 12 12" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="16" cy="16" r="3.4" fill="#c1121f"/></svg>
+        Raasta
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Open navigation menu">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="places.html">Places</a>
+        <a href="wayfinder.html">Find a route</a>
+        <a href="gestalt.html" aria-current="page">Gestalt principles</a>
+        <a href="process.html">Design process</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" data-demo>
+    <div class="wrap">
+      <div class="page-head">
+        <span class="eyebrow">Gestalt showcase</span>
+        <h1 style="font-size:clamp(1.9rem,4vw,2.8rem)">Eight principles, each doing a job</h1>
+        <p class="lead">Every principle below is used on a real page of Raasta. For each one: what it is, where it appears, why it was chosen, and how it helps people use the site. Each demo has a button so you can switch the principle off and see what is lost.</p>
+        <p class="muted"><strong>Visible in the layout:</strong> proximity, similarity, common region, figure-ground, focal point. <strong>Shown through interaction:</strong> continuity, closure, common fate.</p>
+      </div>
+
+      <!-- 1 PROXIMITY -->
+      <article class="principle" id="proximity">
+        <div>
+          <span class="tag">1 · Visible</span>
+          <h2>Proximity</h2>
+          <p class="lead">Things placed close together are seen as a group.</p>
+          <dl class="facts">
+            <div><dt>Where it is used</dt><dd>Route steps are stacked tightly with the distance beside each one. The A and B fields sit together, away from the filter chips. On the Places directory, cards sit in clear groups with consistent spacing, and in the planner, nearest places cluster right under their category button. On the map, buildings of one block cluster are drawn close together.</dd></div>
+            <div><dt>Why</dt><dd>A route is one thing, not eight separate lines. Small gaps inside a group and larger gaps between groups say "these belong together" without any extra label.</dd></div>
+            <div><dt>How it helps</dt><dd>Users find the A/B fields first, then the filters, then the result, in that order, without reading a heading for each part.</dd></div>
+          </dl>
+        </div>
+        <div class="demo">
+          <p class="demo-title">Live demo · campus places</p>
+          <div class="demo-stage">
+            <div class="prox" id="prox">
+              <div class="grp"><span class="tile">Block 1</span><span class="tile">Block 2</span><span class="tile">Block 3</span></div>
+              <div class="grp"><span class="tile">Boys Hostel</span><span class="tile">Girls Hostel</span></div>
+              <div class="grp"><span class="tile">Library</span><span class="tile">IT Block</span></div>
+            </div>
+          </div>
+          <div class="demo-actions"><button class="btn btn-ghost btn-small" id="prox-btn" type="button">Remove grouping</button></div>
+          <p class="demo-caption">With even spacing, the eye cannot tell which places belong together.</p>
+        </div>
+      </article>
+
+      <!-- 2 SIMILARITY -->
+      <article class="principle" id="similarity">
+        <div>
+          <span class="tag">2 · Visible</span>
+          <h2>Similarity</h2>
+          <p class="lead">Things that look alike are seen as the same kind of thing.</p>
+          <dl class="facts">
+            <div><dt>Where it is used</dt><dd>Every map pin has a colour, a shape, and an inner letter identifier (C, H, F, S, M, L, G, K) for its type: blue circles with "C" for academic (classroom) blocks, orange squares with "H" for hostels, pink diamonds with "F" for food and services, green triangles with "S" for sports, purple hexagons with "M" for administration, teal shields with "L" for landmarks such as Gandhi Chowk, deep red arches with "G" for the campus gates, and indigo stars with "K" for children services such as the Kinder Garden. On the Places directory, every card within the same category shares an identical visual structure and category badge. All primary buttons share one style.</dd></div>
+            <div><dt>Why</dt><dd>The campus has <span data-place-count>21</span> places. Reading <span data-place-count>21</span> labels is slow; scanning for a colour, shape, or letter is fast. Using shape and an inner letter as well as colour means people who cannot tell colours apart can still read the map immediately.</dd></div>
+            <div><dt>How it helps</dt><dd>Someone looking for "any hostel" can spot the orange squares with "H" in a second. Buttons that look the same teach users what is clickable.</dd></div>
+          </dl>
+        </div>
+        <div class="demo">
+          <p class="demo-title">Live demo · pick a type</p>
+          <div class="demo-stage"><div class="sim-grid" id="sim-grid"></div></div>
+          <div class="chips" id="sim-chips" style="margin-top:12px"></div>
+          <p class="demo-caption">Choose a type and every pin of that type stands out together.</p>
+        </div>
+      </article>
+
+      <!-- 3 COMMON REGION -->
+      <article class="principle" id="common-region">
+        <div>
+          <span class="tag">3 · Visible</span>
+          <h2>Common region</h2>
+          <p class="lead">Things inside the same boundary are seen as a group.</p>
+          <dl class="facts">
+            <div><dt>Where it is used</dt><dd>The planner, the map and each persona on the home page sit in their own white cards. On the map, soft dashed outlines mark the Academic core, the Hostel zone and Blocks 10 and 11.</dd></div>
+            <div><dt>Why</dt><dd>A boundary groups things more strongly than colour or spacing, so it is the right tool to separate the planner from the map and to name campus zones.</dd></div>
+            <div><dt>How it helps</dt><dd>Users know which controls belong to the planner and which belong to the map. The zones tell a newcomer that "Blocks 1 to 8" are one area.</dd></div>
+          </dl>
+        </div>
+        <div class="demo">
+          <p class="demo-title">Live demo · planner panel</p>
+          <div class="demo-stage">
+            <div class="region-demo" id="region">
+              <div class="box"><b>Route</b>From Library to Food Court</div>
+              <div class="box"><b>Filter</b>Show hostels only</div>
+              <div class="box"><b>Time</b>About 7 minutes</div>
+            </div>
+          </div>
+          <div class="demo-actions"><button class="btn btn-ghost btn-small" id="region-btn" type="button">Remove containers</button></div>
+          <p class="demo-caption">Without boundaries, three separate ideas blur into one block of text.</p>
+        </div>
+      </article>
+
+      <!-- 4 FIGURE-GROUND -->
+      <article class="principle" id="figure-ground">
+        <div>
+          <span class="tag">4 · Visible</span>
+          <h2>Figure-ground</h2>
+          <p class="lead">We separate a focus object (the figure) from its background (the ground).</p>
+          <dl class="facts">
+            <div><dt>Where it is used</dt><dd>When a route is chosen, the map fades back and the route comes forward in bright coral with a white outline. The two chosen places grow larger and get an A or B badge, and every other pin steps back. When tapping any place, the place detail modal panel emerges as the prominent figure while the entire background dims under a semi-transparent backdrop.</dd></div>
+            <div><dt>Why</dt><dd>A campus map has roads, buildings and labels everywhere. Only one path matters at a given moment, so the rest must become background.</dd></div>
+            <div><dt>How it helps</dt><dd>The user never has to hunt for the route in a busy picture. It is the first thing the eye lands on.</dd></div>
+          </dl>
+        </div>
+        <div class="demo">
+          <p class="demo-title">Live demo · Library to Food Court</p>
+          <div class="demo-stage" style="padding:8px"><div class="crop fg" id="fg-crop" data-from="library" data-to="foodcourt"></div></div>
+          <div class="demo-actions"><button class="btn btn-ghost btn-small" id="fg-btn" type="button">Remove the dimming</button></div>
+          <p class="demo-caption">Dimmed, the route is the figure. At full strength, the map competes with it.</p>
+        </div>
+      </article>
+
+      <!-- 5 FOCAL POINT -->
+      <article class="principle" id="focal-point">
+        <div>
+          <span class="tag">5 · Visible</span>
+          <h2>Focal point</h2>
+          <p class="lead">The element that stands out most is seen first.</p>
+          <dl class="facts">
+            <div><dt>Where it is used</dt><dd>The home page has one large filled "Find a route" button and one quiet outlined button. On the route finder, the coral route and the pulsing B marker are the strongest elements on screen.</dd></div>
+            <div><dt>Why</dt><dd>Most visitors have a single goal: get a route. One loud action avoids choice paralysis and makes the first step obvious.</dd></div>
+            <div><dt>How it helps</dt><dd>A new user needs no instructions. The eye goes to the biggest, darkest button, and that is the right one.</dd></div>
+          </dl>
+        </div>
+        <div class="demo">
+          <p class="demo-title">Live demo · home page actions</p>
+          <div class="demo-stage">
+            <div class="focal-demo" id="focal">
+              <button class="fbtn" type="button" tabindex="-1">About</button>
+              <button class="fbtn main" type="button" tabindex="-1">Find a route</button>
+              <button class="fbtn" type="button" tabindex="-1">Process</button>
+            </div>
+          </div>
+          <div class="demo-actions"><button class="btn btn-ghost btn-small" id="focal-btn" type="button">Make every button equal</button></div>
+          <p class="demo-caption">When all three buttons look equal, the main action has to be found by reading.</p>
+        </div>
+      </article>
+
+      <!-- 6 CONTINUITY -->
+      <article class="principle" id="continuity">
+        <div>
+          <span class="tag interactive">6 · Interaction</span>
+          <h2>Continuity</h2>
+          <p class="lead">The eye follows a smooth line or path and expects it to keep going.</p>
+          <dl class="facts">
+            <div><dt>Where it is used</dt><dd>The route is one unbroken line that draws itself from A to B, with small moving dashes showing the direction. The three-step progress bar on the route finder (Where are you, Where to, Walk) fills in as a line. The dotted rail beside the steps connects them in order.</dd></div>
+            <div><dt>Why</dt><dd>Wayfinding is about direction. A continuous line tells people where to go next more clearly than a list of turns.</dd></div>
+            <div><dt>How it helps</dt><dd>Users can follow the path with their eyes before reading a single step, and they can see how far through the task they are.</dd></div>
+          </dl>
+        </div>
+        <div class="demo">
+          <p class="demo-title">Live demo · Library to Block 11</p>
+          <div class="demo-stage" style="padding:8px"><div class="crop anim" id="cont-crop" data-from="library" data-to="b11"></div></div>
+          <div class="demo-actions"><button class="btn btn-ghost btn-small" id="cont-btn" type="button">Replay the route</button></div>
+          <p class="demo-caption">The line draws itself from start to finish, and the eye follows it.</p>
+        </div>
+      </article>
+
+      <!-- 7 CLOSURE -->
+      <article class="principle" id="closure">
+        <div>
+          <span class="tag interactive">7 · Interaction</span>
+          <h2>Closure</h2>
+          <p class="lead">The mind completes shapes that have small gaps.</p>
+          <dl class="facts">
+            <div><dt>Where it is used</dt><dd>The Raasta logo is a ring with a gap around a single dot. The progress ring in the route result fills as you tick off steps and closes when you arrive. The campus zones are dashed outlines that the eye reads as complete shapes.</dd></div>
+            <div><dt>Why</dt><dd>An unfinished ring asks to be finished. That makes "arrive" feel like a goal rather than a button, and it keeps the zone outlines light.</dd></div>
+            <div><dt>How it helps</dt><dd>The ring shows progress at a glance, and the dashed zones group places without hiding the map.</dd></div>
+          </dl>
+        </div>
+        <div class="demo">
+          <p class="demo-title">Live demo · arrival ring</p>
+          <div class="demo-stage">
+            <div class="ring-demo" id="closure-demo">
+              <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="gapring" cx="60" cy="60" r="50"/><circle cx="60" cy="60" r="8" fill="#c1121f"/></svg>
+              <p class="muted" style="margin:0;max-width:22ch">The ring has a gap, but you still read it as a circle.</p>
+            </div>
+          </div>
+          <div class="demo-actions"><button class="btn btn-ghost btn-small" id="closure-btn" type="button">Complete the ring</button></div>
+          <p class="demo-caption">The ring closes, and settles into navy, when the user arrives.</p>
+        </div>
+      </article>
+
+      <!-- 8 COMMON FATE -->
+      <article class="principle" id="common-fate">
+        <div>
+          <span class="tag interactive">8 · Interaction</span>
+          <h2>Common fate</h2>
+          <p class="lead">Things that move together are seen as belonging together.</p>
+          <dl class="facts">
+            <div><dt>Where it is used</dt><dd>On the route finder, choose "Hostels" in the filter and every hostel pin on the map bobs up and down together while the rest fade. The same happens for academic blocks, food, sports and administration.</dd></div>
+            <div><dt>Why</dt><dd>Shared motion is a stronger grouping signal than colour alone, and it works even when pins are far apart on the map.</dd></div>
+            <div><dt>How it helps</dt><dd>A user can answer "where are all the food places?" at a glance, without reading labels.</dd></div>
+          </dl>
+        </div>
+        <div class="demo">
+          <p class="demo-title">Live demo · pick a type</p>
+          <div class="demo-stage"><div class="fate-row" id="fate-row"></div></div>
+          <div class="chips" id="fate-chips" style="margin-top:12px"></div>
+          <p class="demo-caption">Pins of the chosen type move as one group.</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p><strong>Raasta</strong> · "Designing for Perception"</p>
+        <p>A Gestalt principles web assignment. Not an official UPES product.</p>
+      </div>
+      <div>
+        <p><a href="wayfinder.html">Find a route</a> · <a href="process.html">Design process</a></p>
+      </div>
+    </div>
+    <div class="wrap footer-credits" aria-label="Project credits">
+      <div class="credit-item">
+        <span class="micro">Designed &amp; built by</span>
+        <strong>Hardik Kumar</strong>
+        <span>SAP ID: 590037988</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Under the guidance of</span>
+        <strong>Prof. Pankaj Badoni</strong>
+        <span>UPES, Dehradun</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Contact</span>
+        <a href="mailto:Hardik.37988@stu.upes.ac.in">Hardik.37988@stu.upes.ac.in</a>
+        <a href="https://github.com/hardik2988" target="_blank" rel="noopener">github.com/hardik2988</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/route-core.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

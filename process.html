@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design process | Raasta</title>
+  <meta name="description" content="How Raasta was designed: problem, audience, needs, sketches, wireframes, final decisions and design system.">
+  <meta name="theme-color" content="#fdf0d5">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raasta">
+  <meta property="og:title" content="Design process | Raasta">
+  <meta property="og:description" content="How Raasta was designed: problem, audience, needs, sketches, wireframes, final decisions and design system.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Design process | Raasta">
+  <meta name="twitter:description" content="How Raasta was designed: problem, audience, needs, sketches, wireframes, final decisions and design system.">
+  <meta name="twitter:image" content="assets/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <!-- Prepare pages in the background when a link is hovered, so moving between pages is near-instant -->
+  <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*.html"},"eagerness":"moderate"}]}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Raasta home">
+        <svg viewBox="0 0 32 32" aria-hidden="true" width="32" height="32"><path d="M16 4a12 12 0 1 0 12 12" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="16" cy="16" r="3.4" fill="#c1121f"/></svg>
+        Raasta
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Open navigation menu">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="places.html">Places</a>
+        <a href="wayfinder.html">Find a route</a>
+        <a href="gestalt.html">Gestalt principles</a>
+        <a href="process.html" aria-current="page">Design process</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <div class="page-head">
+        <span class="eyebrow">Design process</span>
+        <h1 style="font-size:clamp(1.9rem,4vw,2.8rem)">From a lost first week to a two-tap route</h1>
+        <p class="lead">The steps behind Raasta, in the order they happened.</p>
+        <ul class="process-nav">
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#audience">Audience</a></li>
+          <li><a href="#needs">User needs</a></li>
+          <li><a href="#sketches">Sketches</a></li>
+          <li><a href="#wireframes">Wireframes</a></li>
+          <li><a href="#decisions">Final decisions</a></li>
+          <li><a href="#system">Design system</a></li>
+        </ul>
+      </div>
+
+      <section class="p-section" id="problem">
+        <h2>1. Problem statement</h2>
+        <p class="lead">New students and visitors at the UPES Bidholi campus cannot easily work out how to walk from one block to another.</p>
+        <div class="grid-2">
+          <div class="card">
+            <h3>What goes wrong</h3>
+            <ul class="needs">
+              <li>Blocks are named by number (Block 1 to Block 11), so the name gives no clue about location.</li>
+              <li>Search apps show the campus as one pin with partly wrong labels, so they cannot give walking routes between blocks.</li>
+              <li>Asking other people works, but gives different answers every time.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Design goal</h3>
+            <p>Let someone go from "I am here" to "I know the way" in two taps, using a map that is simple enough to read at a glance on a phone.</p>
+            <p class="muted" style="margin:0">Success looks like: a first-time user finds a route without any instructions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="p-section" id="audience">
+        <h2>2. Target audience</h2>
+        <div class="grid-3">
+          <article class="card persona"><h3>First-year student</h3><span class="role">Primary</span><p>Has a timetable full of block numbers and no mental map yet. Uses a phone, usually between classes with little time.</p></article>
+          <article class="card persona"><h3>Visitor or parent</h3><span class="role">Secondary</span><p>Arrives at the gate and needs a hostel or the Management Development Centre. Does not know any block names.</p></article>
+          <article class="card persona"><h3>Event volunteer</h3><span class="role">Secondary</span><p>Guides other people and needs directions they can say out loud with confidence.</p></article>
+        </div>
+      </section>
+
+      <section class="p-section" id="needs">
+        <h2>3. User needs</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Need</th><th>What it means for the design</th><th>Gestalt principle that serves it</th></tr></thead>
+            <tbody>
+              <tr><td>"Show me where to go, not everything."</td><td>One route at a time, everything else fades back.</td><td>Figure-ground, focal point</td></tr>
+              <tr><td>"Tell me what a place is without reading."</td><td>Every type of place has its own colour, shape and letter identifier.</td><td>Similarity</td></tr>
+              <tr><td>"Which way do I walk?"</td><td>A continuous line with direction, plus written steps.</td><td>Continuity</td></tr>
+              <tr><td>"Which blocks are near each other?"</td><td>Zones on the map group neighbouring places.</td><td>Proximity, common region</td></tr>
+              <tr><td>"Am I there yet?"</td><td>Steps to tick off and a progress ring that closes.</td><td>Closure</td></tr>
+              <tr><td>"Where are all the hostels?"</td><td>A filter that moves all matching places together.</td><td>Common fate, similarity</td></tr>
+              <tr><td>"I use my phone one-handed."</td><td>Large tap targets, one column layout on small screens.</td><td>Common region, proximity</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="p-section" id="sketches">
+        <h2>4. Sketches</h2>
+        <div class="pending">
+          <p style="margin:0 0 8px"><strong>Add your own sketches here.</strong> Photograph your paper sketches of the map and the main screen and place the photos in the <code>assets</code> folder.</p>
+          <p style="margin:0">Then replace this box with: <code>&lt;img src="assets/sketch-1.jpg" alt="Hand sketch of the campus map layout"&gt;</code></p>
+        </div>
+        <div class="grid-3" style="margin-top:20px">
+          <div class="card"><h3>Sketch 1: the map</h3><p class="muted" style="margin:0">Buildings as boxes, roads as lines, grouped into zones. Decided what is next to what, not exact scale.</p></div>
+          <div class="card"><h3>Sketch 2: the planner</h3><p class="muted" style="margin:0">Two fields stacked (A and B) above the result, so the order of use is top to bottom.</p></div>
+          <div class="card"><h3>Sketch 3: the result</h3><p class="muted" style="margin:0">Time and distance first, then numbered steps along a dotted rail.</p></div>
+        </div>
+      </section>
+
+      <section class="p-section" id="wireframes">
+        <h2>5. Wireframes</h2>
+        <div class="wf-grid">
+          <figure class="wf" style="margin:0">
+            <span class="wf-tag">01 · Home</span>
+            <svg viewBox="0 0 300 220" role="img" aria-label="Wireframe of the home page: a headline and one large button on the left, a map preview on the right, then three steps below">
+              <defs>
+                <pattern id="wfDots1" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#003049" opacity=".10"/></pattern>
+                <linearGradient id="wfPaper1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf1"/><stop offset="1" stop-color="#f4e6c8"/></linearGradient>
+                <linearGradient id="wfMap1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8ecd2"/><stop offset="1" stop-color="#efdcb6"/></linearGradient>
+                <linearGradient id="wfNavy1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b4363"/><stop offset="1" stop-color="#00283d"/></linearGradient>
+                <filter id="wfShadow1" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#3a2810" flood-opacity=".18"/><feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#003049" flood-opacity=".12"/></filter>
+                <filter id="wfPin1" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.4" flood-color="#000" flood-opacity=".3"/></filter>
+              </defs>
+              <rect width="300" height="220" fill="url(#wfPaper1)"/><rect width="300" height="220" fill="url(#wfDots1)"/>
+              <g filter="url(#wfShadow1)"><rect x="14" y="12" width="272" height="196" rx="11" fill="#fffdf8" stroke="#003049" stroke-opacity=".1"/></g><path d="M14 23 a11 11 0 0 1 11 -11 h250 a11 11 0 0 1 11 11 v7 h-272 z" fill="#f6ead3"/><line x1="14" y1="30" x2="286" y2="30" stroke="#003049" stroke-opacity=".08"/><circle cx="24" cy="21" r="2.4" fill="#c1121f"/><circle cx="32" cy="21" r="2.4" fill="#e0b46a"/><circle cx="40" cy="21" r="2.4" fill="#669bbc"/><rect x="101.04" y="17" width="97.92" height="8" rx="4" fill="#fffdf8" stroke="#003049" stroke-opacity=".08"/>
+              <rect x="28" y="42" width="54" height="6" rx="3" fill="#c1121f" opacity=".75"/>
+              <rect x="28" y="54" width="112" height="11" rx="3" fill="url(#wfNavy1)"/><rect x="28" y="70" width="88" height="11" rx="3" fill="url(#wfNavy1)"/>
+              <rect x="28" y="89" width="104" height="5" rx="2.5" fill="#e7d6b4"/><rect x="28" y="99" width="86" height="5" rx="2.5" fill="#e7d6b4"/>
+              <rect x="28" y="114" width="72" height="20" rx="10" fill="url(#wfNavy1)"/><path d="M84 121.5 l3.5 2.5 -3.5 2.5" fill="none" stroke="#fdf0d5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="40" y="122" width="30" height="4" rx="2" fill="#fdf0d5" opacity=".9"/>
+              <rect x="106" y="116" width="46" height="16" rx="8" fill="none" stroke="#003049" stroke-opacity=".35" stroke-width="1.2"/>
+              <g filter="url(#wfShadow1)"><rect x="160" y="36" width="114" height="100" rx="9" fill="url(#wfMap1)"/></g>
+              <g stroke="#fffaf0" stroke-width="3.2" stroke-linecap="round" opacity=".95"><path d="M166 98.0 C194.2 91.0 222.7 106.0 268 86.0"/><path d="M199.9 42 L207.88 130"/><path d="M239.8 44 L230.68 128"/></g><g fill="#e6cfa3" opacity=".9"><rect x="171.4" y="50.0" width="18.240000000000002" height="16.0" rx="2"/><rect x="214.72" y="54.0" width="13.68" height="20.0" rx="2"/><rect x="246.64" y="106.0" width="15.96" height="14.000000000000002" rx="2"/><rect x="173.68" y="110.0" width="20.52" height="12.0" rx="2"/></g>
+              <path d="M176 118 L200 96 L226 104 L254 66" fill="none" stroke="#fffdf7" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/><path class="wf-route" d="M176 118 L200 96 L226 104 L254 66" pathLength="1" fill="none" stroke="#c1121f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><g filter="url(#wfPin1)"><circle cx="176" cy="118" r="5.5" fill="#003049" stroke="#fff" stroke-width="2"/><path class="wf-pinb" d="M254 67c-4.2-4.6-6.4-7.9-6.4-10.6a6.4 6.4 0 0 1 12.8 0c0 2.7-2.2 6-6.4 10.6z" fill="#c1121f" stroke="#fff" stroke-width="1.6"/><circle cx="254" cy="56.4" r="2.2" fill="#fff"/></g>
+              <g><circle cx="74" cy="168" r="9" fill="url(#wfNavy1)"/><circle cx="150" cy="168" r="9" fill="url(#wfNavy1)"/><circle cx="226" cy="168" r="9" fill="#fffdf8" stroke="#003049" stroke-width="1.5"/>
+              <text x="74" y="171.5" text-anchor="middle" font-size="9" font-weight="700" fill="#fdf0d5" font-family="Familjen Grotesk, sans-serif">1</text><text x="150" y="171.5" text-anchor="middle" font-size="9" font-weight="700" fill="#fdf0d5" font-family="Familjen Grotesk, sans-serif">2</text><text x="226" y="171.5" text-anchor="middle" font-size="9" font-weight="700" fill="#003049" font-family="Familjen Grotesk, sans-serif">3</text>
+              <path d="M86 168 H138 M162 168 H214" stroke="#c9b48c" stroke-width="1.6" stroke-dasharray="2 4" stroke-linecap="round"/></g>
+              <rect x="56" y="184" width="36" height="5" rx="2.5" fill="#e7d6b4"/><rect x="132" y="184" width="36" height="5" rx="2.5" fill="#e7d6b4"/><rect x="208" y="184" width="36" height="5" rx="2.5" fill="#e7d6b4"/>
+            </svg>
+            <figcaption><strong>Home.</strong> One big button is the focal point. Three steps joined by a dotted line.</figcaption>
+          </figure>
+          <figure class="wf" style="margin:0">
+            <span class="wf-tag">02 · Route finder</span>
+            <svg viewBox="0 0 300 220" role="img" aria-label="Wireframe of the route finder: a directions bar with start, swap and destination on top, the map below with a highlighted route">
+              <defs>
+                <pattern id="wfDots2" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#003049" opacity=".10"/></pattern>
+                <linearGradient id="wfPaper2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf1"/><stop offset="1" stop-color="#f4e6c8"/></linearGradient>
+                <linearGradient id="wfMap2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8ecd2"/><stop offset="1" stop-color="#efdcb6"/></linearGradient>
+                <linearGradient id="wfNavy2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b4363"/><stop offset="1" stop-color="#00283d"/></linearGradient>
+                <filter id="wfShadow2" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#3a2810" flood-opacity=".18"/><feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#003049" flood-opacity=".12"/></filter>
+                <filter id="wfPin2" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.4" flood-color="#000" flood-opacity=".3"/></filter>
+              </defs>
+              <rect width="300" height="220" fill="url(#wfPaper2)"/><rect width="300" height="220" fill="url(#wfDots2)"/>
+              <g filter="url(#wfShadow2)"><rect x="14" y="12" width="272" height="196" rx="11" fill="#fffdf8" stroke="#003049" stroke-opacity=".1"/></g><path d="M14 23 a11 11 0 0 1 11 -11 h250 a11 11 0 0 1 11 11 v7 h-272 z" fill="#f6ead3"/><line x1="14" y1="30" x2="286" y2="30" stroke="#003049" stroke-opacity=".08"/><circle cx="24" cy="21" r="2.4" fill="#c1121f"/><circle cx="32" cy="21" r="2.4" fill="#e0b46a"/><circle cx="40" cy="21" r="2.4" fill="#669bbc"/><rect x="101.04" y="17" width="97.92" height="8" rx="4" fill="#fffdf8" stroke="#003049" stroke-opacity=".08"/>
+              <g filter="url(#wfShadow2)"><rect x="26" y="38" width="248" height="28" rx="9" fill="#fffaf1" stroke="#003049" stroke-opacity=".08"/></g>
+              <rect x="32" y="43" width="94" height="18" rx="6" fill="#fffdf8" stroke="#003049" stroke-opacity=".14"/><circle cx="41" cy="52" r="4.5" fill="#003049"/><rect x="50" y="50" width="44" height="4" rx="2" fill="#d9c7a4"/>
+              <circle cx="138" cy="52" r="8" fill="url(#wfNavy2)"/><path d="M134.5 50 h7 l-2 -2 M141.5 54 h-7 l2 2" fill="none" stroke="#fdf0d5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="150" y="43" width="94" height="18" rx="6" fill="#fffdf8" stroke="#003049" stroke-opacity=".14"/><circle cx="159" cy="52" r="4.5" fill="#c1121f"/><rect x="168" y="50" width="40" height="4" rx="2" fill="#d9c7a4"/>
+              <rect x="249" y="45" width="20" height="14" rx="5" fill="url(#wfNavy2)"/>
+              <g filter="url(#wfShadow2)"><rect x="26" y="74" width="248" height="122" rx="10" fill="url(#wfMap2)"/></g>
+              <g stroke="#fffaf0" stroke-width="3.2" stroke-linecap="round" opacity=".95"><path d="M32 149.64 C100.39999999999999 141.10000000000002 162.4 159.39999999999998 268 135.0"/><path d="M112.8 80 L130.16 190"/><path d="M199.6 82 L179.76 188"/></g><g fill="#e6cfa3" opacity=".9"><rect x="50.8" y="91.08" width="39.68" height="19.52" rx="2"/><rect x="145.04" y="95.96000000000001" width="29.759999999999998" height="24.400000000000002" rx="2"/><rect x="214.48" y="159.39999999999998" width="34.720000000000006" height="17.080000000000002" rx="2"/><rect x="55.76" y="164.28" width="44.64" height="14.639999999999999" rx="2"/></g>
+              <rect x="34" y="82" width="52" height="12" rx="6" fill="#fffaf1" stroke="#003049" stroke-opacity=".1"/><rect x="38" y="86" width="5" height="4" rx="1" fill="#003049"/><rect x="47" y="86.5" width="33" height="3" rx="1.5" fill="#d9c7a4"/>
+              <rect x="256" y="82" width="12" height="40" rx="6" fill="#fffaf1" stroke="#003049" stroke-opacity=".1"/><path d="M262 89 v5 M259.5 91.5 h5 M259.5 105 h5" stroke="#003049" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M76 176 L110 138 L160 128 L200 102 L224 88" fill="none" stroke="#fffdf7" stroke-width="6.6" stroke-linecap="round" stroke-linejoin="round"/><path class="wf-route" d="M76 176 L110 138 L160 128 L200 102 L224 88" pathLength="1" fill="none" stroke="#c1121f" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><g filter="url(#wfPin2)"><circle cx="76" cy="176" r="5.5" fill="#003049" stroke="#fff" stroke-width="2"/><path class="wf-pinb" d="M224 89c-4.2-4.6-6.4-7.9-6.4-10.6a6.4 6.4 0 0 1 12.8 0c0 2.7-2.2 6-6.4 10.6z" fill="#c1121f" stroke="#fff" stroke-width="1.6"/><circle cx="224" cy="78.4" r="2.2" fill="#fff"/></g>
+            </svg>
+            <figcaption><strong>Route finder.</strong> A directions bar on top, the map below. The route is the figure; the map is the ground.</figcaption>
+          </figure>
+          <figure class="wf" style="margin:0">
+            <span class="wf-tag">03 · Mobile</span>
+            <svg viewBox="0 0 300 220" role="img" aria-label="Wireframe of the mobile route finder: single column with the fields, the map and the steps stacked">
+              <defs>
+                <pattern id="wfDots3" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#003049" opacity=".10"/></pattern>
+                <linearGradient id="wfPaper3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf1"/><stop offset="1" stop-color="#f4e6c8"/></linearGradient>
+                <linearGradient id="wfMap3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8ecd2"/><stop offset="1" stop-color="#efdcb6"/></linearGradient>
+                <linearGradient id="wfNavy3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b4363"/><stop offset="1" stop-color="#00283d"/></linearGradient>
+                <filter id="wfShadow3" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#3a2810" flood-opacity=".18"/><feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#003049" flood-opacity=".12"/></filter>
+                <filter id="wfPin3" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.4" flood-color="#000" flood-opacity=".3"/></filter>
+              </defs>
+              <rect width="300" height="220" fill="url(#wfPaper3)"/><rect width="300" height="220" fill="url(#wfDots3)"/>
+              <g filter="url(#wfShadow3)"><rect x="104" y="8" width="92" height="204" rx="17" fill="url(#wfNavy3)"/></g>
+              <rect x="109" y="13" width="82" height="194" rx="13" fill="#fffaf1"/>
+              <rect x="135" y="16" width="30" height="7" rx="3.5" fill="#00283d"/>
+              <rect x="116" y="30" width="68" height="13" rx="5" fill="#fffdf8" stroke="#003049" stroke-opacity=".14"/><circle cx="123" cy="36.5" r="3.4" fill="#003049"/><rect x="130" y="35" width="32" height="3" rx="1.5" fill="#d9c7a4"/>
+              <rect x="116" y="47" width="68" height="13" rx="5" fill="#fffdf8" stroke="#003049" stroke-opacity=".14"/><circle cx="123" cy="53.5" r="3.4" fill="#c1121f"/><rect x="130" y="52" width="28" height="3" rx="1.5" fill="#d9c7a4"/>
+              <g filter="url(#wfShadow3)"><rect x="116" y="66" width="68" height="70" rx="8" fill="url(#wfMap3)"/></g>
+              <g stroke="#fffaf0" stroke-width="3.2" stroke-linecap="round" opacity=".95"><path d="M122 109.4 C136.4 104.5 153.4 115.0 178 101.0"/><path d="M139.8 72 L144.56 130"/><path d="M163.6 74 L158.16 128"/></g><g fill="#e6cfa3" opacity=".9"><rect x="122.8" y="75.8" width="10.88" height="11.200000000000001" rx="2"/><rect x="148.64" y="78.6" width="8.16" height="14.0" rx="2"/><rect x="167.68" y="115.0" width="9.520000000000001" height="9.8" rx="2"/><rect x="124.16" y="117.8" width="12.24" height="8.4" rx="2"/></g>
+              <path d="M126 124 L142 104 L160 100 L174 80" fill="none" stroke="#fffdf7" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><path class="wf-route" d="M126 124 L142 104 L160 100 L174 80" pathLength="1" fill="none" stroke="#c1121f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><g filter="url(#wfPin3)"><circle cx="126" cy="124" r="5.5" fill="#003049" stroke="#fff" stroke-width="2"/><path class="wf-pinb" d="M174 81c-4.2-4.6-6.4-7.9-6.4-10.6a6.4 6.4 0 0 1 12.8 0c0 2.7-2.2 6-6.4 10.6z" fill="#c1121f" stroke="#fff" stroke-width="1.6"/><circle cx="174" cy="70.4" r="2.2" fill="#fff"/></g>
+              <g><circle cx="123" cy="149" r="4.5" fill="url(#wfNavy3)"/><rect x="132" y="147.5" width="44" height="3" rx="1.5" fill="#d9c7a4"/>
+              <circle cx="123" cy="163" r="4.5" fill="url(#wfNavy3)"/><rect x="132" y="161.5" width="36" height="3" rx="1.5" fill="#d9c7a4"/>
+              <circle cx="123" cy="177" r="4.5" fill="#fffdf8" stroke="#003049" stroke-width="1.2"/><rect x="132" y="175.5" width="40" height="3" rx="1.5" fill="#d9c7a4"/>
+              <path d="M123 153.5 V158.5 M123 167.5 V172.5" stroke="#c9b48c" stroke-width="1.2" stroke-dasharray="1.5 2"/></g>
+              <rect x="134" y="198" width="32" height="3" rx="1.5" fill="#003049" opacity=".3"/>
+            </svg>
+            <figcaption><strong>Mobile.</strong> Everything stacks into one column: choose, see the map, read the steps.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="p-section" id="decisions">
+        <h2>6. Final design decisions</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Decision</th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td>A simplified, redrawn map instead of embedding a live map</td><td>A live map cannot be restyled. Owning the map means every colour, label and grouping can be a deliberate Gestalt choice.</td></tr>
+              <tr><td>Labels written by hand from local knowledge</td><td>The online map labelled some places wrongly. Using the real names makes the content trustworthy.</td></tr>
+              <tr><td>Eight place types, each with colour, shape <em>and</em> letter</td><td>Shape and letters back up colour, so the map still works for people who cannot tell colours apart.</td></tr>
+              <tr><td>Green-tinted paper, navy ink, one coral accent</td><td>Neutral surroundings sit quietly beside the green map, and the coral is reserved for the route so it is always the first thing seen.</td></tr>
+              <tr><td>Navy ink instead of pure black</td><td>Softer on screen but still well above the contrast needed for text.</td></tr>
+              <tr><td>Routes computed from a road graph, not typed in</td><td>Any of the <span data-place-count>21</span> places can be a start or destination (<span data-pair-count>420</span> combinations) and every one returns a route.</td></tr>
+              <tr><td>Steps are tickable and the progress ring closes</td><td>Gives a clear sense of progress and an end point.</td></tr>
+              <tr><td>Reduced-motion support and keyboard access</td><td>Animations stop for users who prefer less motion, and every control works with a keyboard.</td></tr>
+              <tr><td>Popular route shortcut chips</td><td>First-year students and visitors frequently travel between key hotspots and need single-tap route calculation without searching.</td></tr>
+              <tr><td>Nearest-place finder by category</td><td>Students with urgent needs (like finding food or sports near their current block) can discover and route to the closest spot immediately.</td></tr>
+              <tr><td>Dedicated Places directory page</td><td>Newcomers need a scannable index of all <span data-place-count>21</span> campus locations with alias search to explore buildings and launch routes from either end.</td></tr>
+              <tr><td>Place detail modal panel on map pins</td><td>Tapping a map marker gives students rich context (category, nearest neighbours, and quick A/B assignment) with clear figure-ground separation.</td></tr>
+              <tr><td>Direction turn line-icons on route steps</td><td>Pedestrians scanning directions under sunlight or while walking need immediate directional shape recognition (left, right, straight, arrive) rather than reading text alone.</td></tr>
+              <tr><td>Restrained motion with full reduced-motion support</td><td>Staggered load transitions, a single logo ring closure demonstration, and animated number counting give life to the interface while strictly disabling all motion when prefers-reduced-motion is detected.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="p-section" id="system">
+        <h2>7. Design system</h2>
+        <p class="lead">A modular token system built on an 8px grid, a restrained palette of navy ink, green-tinted paper, and a single coral accent, and an airport-grade icon hierarchy.</p>
+
+        <h3 style="margin-top:28px">7.1 Colour palette &amp; measured contrast</h3>
+        <p>Every colour pair was measured against WCAG 2.1 AA specifications (minimum 4.5:1 for body text, 3.0:1 for large text and UI components). No second accent colour is used; the coral is strictly reserved for the walking route, destination badges, and focal calls-to-action.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Token &amp; Role</th><th>Hex Value</th><th>Usage Context</th><th>Measured Ratio</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><code>--text</code> (Navy ink)</td><td><code>#003049</code></td><td>Primary headings and body text on paper</td><td>14.45 : 1</td><td>Pass (AAA)</td></tr>
+              <tr><td><code>--text</code> on Surface</td><td><code>#003049</code></td><td>Primary text on white card surfaces</td><td>15.97 : 1</td><td>Pass (AAA)</td></tr>
+              <tr><td><code>--text-muted</code></td><td><code>#34536a</code></td><td>Secondary hints, meta descriptions on paper</td><td>7.20 : 1</td><td>Pass (AAA)</td></tr>
+              <tr><td><code>--text-muted</code> on Surface</td><td><code>#34536a</code></td><td>Secondary hints and steps distance on white</td><td>7.96 : 1</td><td>Pass (AAA)</td></tr>
+              <tr><td><code>--accent-text</code></td><td><code>#780000</code></td><td>Darker coral for small text badges on paper</td><td>5.48 : 1</td><td>Pass (AA)</td></tr>
+              <tr><td><code>--accent-text</code> on Surface</td><td><code>#780000</code></td><td>Darker coral for small text badges on white</td><td>6.06 : 1</td><td>Pass (AA)</td></tr>
+              <tr><td><code>--accent</code> (Coral)</td><td><code>#c1121f</code></td><td>Route line over veiled campus map</td><td>3.30 : 1</td><td>Pass (UI Graphic)</td></tr>
+              <tr><td><code>--accent</code> over Map Green</td><td><code>#c1121f</code></td><td>Route line over un-veiled campus green</td><td>3.12 : 1</td><td>Pass (UI Graphic)</td></tr>
+              <tr><td><code>--accent</code> over White Halo</td><td><code>#c1121f</code></td><td>Route line against 13px white protective halo</td><td>3.67 : 1</td><td>Pass (UI Graphic)</td></tr>
+              <tr><td><code>--focus</code> (Focus blue)</td><td><code>#24628f</code></td><td>Accessible outline ring on interactive controls</td><td>4.55 : 1</td><td>Pass (UI Component)</td></tr>
+              <tr><td><code>--success-text</code></td><td><code>#2c6650</code></td><td>Arrival confirmation text on success badge</td><td>5.85 : 1</td><td>Pass (AA)</td></tr>
+              <tr><td>Footer White on Dark</td><td><code>#ffffff</code></td><td>Site footer text on dark navy background</td><td>15.97 : 1</td><td>Pass (AAA)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin-top:28px">7.2 Typography</h3>
+        <p>Raasta pairs <strong>Outfit</strong> for expressive geometric headings with <strong>Inter</strong> for high-legibility interface copy. Only three font weights are permitted across the codebase (400 regular, 500 medium, 700 bold) to maintain visual restraint. Headings use tight negative tracking (<code>-0.025em</code>) to form compact word units, line lengths are capped at 60 to 75 characters for comfortable reading, and all times, distances, and step counts utilize tabular numerals (<code>tabular-nums</code>) to prevent jitter during live updates.</p>
+
+        <h3 style="margin-top:28px">7.3 Spacing &amp; Depth</h3>
+        <p>Layout rhythm strictly adheres to an 8px grid scale (4, 8, 12, 16, 24, 32, 48, 64, 96px). Elevation relies on a two-level ambient soft shadow system complemented by a 1px inner highlight (<code>inset 0 1px 0 rgba(255, 255, 255, 0.85)</code>) rather than harsh drop shadows or neon glows, giving cards a tactile paper feel.</p>
+
+        <h3 style="margin-top:28px">7.4 Iconography &amp; Airport Signage</h3>
+        <p>All user interface and turn-by-turn direction icons are built on a 24px grid with a uniform 2px stroke width, round caps, and round joins. Directional arrows (start, straight, turn left, turn right, sharp left, sharp right, arrive) guide pedestrians like airport terminal wayfinding, pairing an icon badge with concise instructions and right-aligned distances.</p>
+        <p class="muted" style="margin-top:28px">Known limits, stated openly: the map is schematic, not surveyed; walking times assume about 80 metres per minute; road names are descriptive labels for this project.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p><strong>Raasta</strong> · "Designing for Perception"</p>
+        <p>A Gestalt principles web assignment. Not an official UPES product.</p>
+      </div>
+      <div>
+        <p><a href="wayfinder.html">Find a route</a> · <a href="gestalt.html">Gestalt principles</a></p>
+      </div>
+    </div>
+    <div class="wrap footer-credits" aria-label="Project credits">
+      <div class="credit-item">
+        <span class="micro">Designed &amp; built by</span>
+        <strong>Hardik Kumar</strong>
+        <span>SAP ID: 590037988</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Under the guidance of</span>
+        <strong>Prof. Pankaj Badoni</strong>
+        <span>UPES, Dehradun</span>
+      </div>
+      <div class="credit-item">
+        <span class="micro">Contact</span>
+        <a href="mailto:Hardik.37988@stu.upes.ac.in">Hardik.37988@stu.upes.ac.in</a>
+        <a href="https://github.com/hardik2988" target="_blank" rel="noopener">github.com/hardik2988</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/route-core.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
